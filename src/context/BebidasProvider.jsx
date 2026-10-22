@@ -21,10 +21,11 @@ const BebidasProvider = ({ children }) => {
       if (!bebidaId) return;
 
       try {
-        const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${bebidaId}`;
+        const url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php";
 
-        const { data } = await axios(url);
-        setReceta(data.drinks[0]);
+        /* Params are URL-encoded by axios, avoiding query string injection. */
+        const { data } = await axios(url, { params: { i: bebidaId } });
+        setReceta(Array.isArray(data.drinks) ? data.drinks[0] : {});
       } catch (error) {
         console.log(error);
       } finally {
@@ -41,10 +42,14 @@ const BebidasProvider = ({ children }) => {
    */
   const consultarBebidas = async (datos) => {
     try {
-      const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${datos.nombre}&c=${datos.categoria}`;
+      const url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php";
 
-      const { data } = await axios(url);
-      setBebidas(data.drinks);
+      /* Params are URL-encoded by axios, so user input can't inject extra query params. */
+      const { data } = await axios(url, {
+        params: { i: datos.nombre, c: datos.categoria },
+      });
+      /* The API returns the string "no data found" when there are no results. */
+      setBebidas(Array.isArray(data.drinks) ? data.drinks : []);
     } catch (error) {
       console.log(error);
     }

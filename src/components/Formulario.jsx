@@ -51,6 +51,7 @@ const Formulario = () => {
           <Form.Group className="mb-3">
             <Form.Label htmlFor="nombre">Nombre Bebida</Form.Label>
             <Form.Control
+              id="nombre"
               type="text"
               placeholder="Ej: Tequila, Vodka, Etc"
               name="nombre"
@@ -68,7 +69,7 @@ const Formulario = () => {
               value={busqueda.categoria}
               onChange={handleChange}
             >
-              <option>- Selecciona Categoria -</option>
+              <option value="">- Selecciona Categoria -</option>
               {categorias.map((categoria) => (
                 <option
                   key={categoria.strCategory}

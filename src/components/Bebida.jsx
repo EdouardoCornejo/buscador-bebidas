@@ -21,7 +21,7 @@ const Bebida = ({ bebida }) => {
         <Card.Img
           variant="top"
           src={bebida.strDrinkThumb}
-          alt={`Imagen de ${bebida.srtDrink}`}
+          alt={`Imagen de ${bebida.strDrink}`}
         />
         <Card.Body>
           <Card.Title className="text-center">{bebida.strDrink}</Card.Title>

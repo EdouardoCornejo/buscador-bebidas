@@ -150,7 +150,6 @@ buscador-bebidas/
 │   │   ├── useBebidas.jsx
 │   │   └── useCategorias.jsx
 │   ├── App.jsx
-│   ├── App.css
 │   ├── index.css
 │   └── main.jsx
 ├── index.html
